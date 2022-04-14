@@ -1,24 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
 
-  apiRoot = "http://localhost:3000";
+  root = environment.apiRoot;
 
   constructor(private client: HttpClient) { }
 
   RequestA() {
-    return this.client.get<string>(this.apiRoot+"/RequestA");
+    return this.client.get<string>(this.root+"/RequestA");
   }
 
   RequestB() {
-    return this.client.get<string>(this.apiRoot+"/RequestB");
+    return this.client.get<string>(this.root+"/RequestB");
   }
 
   RequestC() {
-    return this.client.get<string>(this.apiRoot+"/RequestC");
+    return this.client.get<string>(this.root+"/RequestC");
   }
 }

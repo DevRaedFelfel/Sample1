@@ -13,34 +13,36 @@ export class AppComponent implements OnInit {
 
   constructor(
     private primengConfig: PrimeNGConfig,
-    public progressService: ProgressService,
+    private progressService: ProgressService,
     private api: ApiService) {}
+
+    public get loading() { return this.progressService.loading; }
 
     ngOnInit() {
         this.primengConfig.ripple = true;
     }
 
     RequestA() {
-      this.progressService.loading = true;
+      this.progressService.PushRequest();
       this.api.RequestA().subscribe(response => {
         console.log(response);
-        this.progressService.loading = false;
+        this.progressService.PopRequest();
       })
     }
 
     RequestB() {
-      this.progressService.loading = true;
+      this.progressService.PushRequest();
       this.api.RequestB().subscribe(response => {
         console.log(response);
-        this.progressService.loading = false;
+        this.progressService.PopRequest();
       })
     }
 
     RequestC() {
-      this.progressService.loading = true;
+      this.progressService.PushRequest();
       this.api.RequestC().subscribe(response => {
         console.log(response);
-        this.progressService.loading = false;
+        this.progressService.PopRequest();
       })
     }
 }
