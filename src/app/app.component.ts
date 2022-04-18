@@ -23,26 +23,28 @@ export class AppComponent implements OnInit {
     }
 
     RequestA() {
-      this.progressService.PushRequest();
+
       this.api.RequestA().subscribe(response => {
         console.log(response);
-        this.progressService.PopRequest();
+
       })
     }
 
     RequestB() {
-      this.progressService.PushRequest();
+
       this.api.RequestB().subscribe(response => {
         console.log(response);
-        this.progressService.PopRequest();
+
       })
     }
 
     RequestC() {
-      this.progressService.PushRequest();
+
       this.api.RequestC().subscribe(response => {
         console.log(response);
-        this.progressService.PopRequest();
+
       })
     }
+
+
 }

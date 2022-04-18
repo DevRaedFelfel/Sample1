@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ProgressService } from './progress.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,9 @@ export class ApiService {
 
   root = environment.apiRoot;
 
-  constructor(private client: HttpClient) { }
+  constructor(
+    private client: HttpClient
+    ) { }
 
   RequestA() {
     return this.client.get<string>(this.root+"/RequestA");
@@ -22,4 +25,5 @@ export class ApiService {
   RequestC() {
     return this.client.get<string>(this.root+"/RequestC");
   }
+
 }
