@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { ApiService } from './services/api.service';
 import { ProgressService } from './services/progress.service';
 
@@ -8,25 +9,34 @@ import { ProgressService } from './services/progress.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'Sample1';
+  x: Subscription | undefined;
+
+  get LatestString$() { return this.api.LastestString$; }
 
   constructor(
     private primengConfig: PrimeNGConfig,
     private progressService: ProgressService,
     private api: ApiService) {}
 
+  ngOnDestroy(): void {
+
+  }
+
+
+
     public get loading() { return this.progressService.loading; }
 
     ngOnInit() {
         this.primengConfig.ripple = true;
+        let x = this.api.RequestA();
     }
 
     RequestA() {
 
-      this.api.RequestA().subscribe(response => {
+      let x = this.api.RequestA().subscribe(response => {
         console.log(response);
-
       })
     }
 
@@ -34,7 +44,6 @@ export class AppComponent implements OnInit {
 
       this.api.RequestB().subscribe(response => {
         console.log(response);
-
       })
     }
 
@@ -42,7 +51,6 @@ export class AppComponent implements OnInit {
 
       this.api.RequestC().subscribe(response => {
         console.log(response);
-
       })
     }
 
